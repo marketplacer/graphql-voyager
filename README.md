@@ -1,0 +1,1 @@
+This is test to see whether we can include GraphQL Voyager on https://api.marketplacer.com/
