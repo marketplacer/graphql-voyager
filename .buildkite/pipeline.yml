@@ -1,0 +1,9 @@
+steps:
+  - name: ":rocket: Publish"
+    branches: "master"
+    command: sh /app/build-and-publish
+    timeout_in_minutes: 10
+    plugins:
+      docker-compose#v3.5.0:
+        config: docker-compose.yml
+        run: app
