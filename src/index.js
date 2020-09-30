@@ -6,6 +6,7 @@ function introspectionProvider (introspectionQuery) {
       return response.text()
     })
     .then(JSON.parse)
+    .then((data) => ({ data }))
     .catch((e) => {
       console.error('Something went wrong')
       console.error(e)
