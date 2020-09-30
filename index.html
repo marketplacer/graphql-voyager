@@ -9,43 +9,6 @@
   </head>
   <body>
     <div id="voyager">Loading...</div>
-    <script>
-      function introspectionProvider(introspectionQuery) {
-        
-        
-        return fetch('http://127.0.0.1:5500/schema.json', {
-          method: 'get',
-          //mode: 'no-cors',
-          headers: {
-            //'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          //body: JSON.stringify({query: introspectionQuery}),
-        }).then(function (response) {
-          if(response.status !== 200)
-          {
-            console.log('Looks like there was a problem. Status Code: ' + response.status + " Type: " + response.type);
-            
-          }
-            
-          return response.text();
-        
-        }).then(function (responseBody) {
-            
-          try {
-            return JSON.parse(responseBody);
-          } catch (error) {  
-             
-            return responseBody;
-          }
-          
-        });
-      }
-
-      // Render <Voyager />
-      GraphQLVoyager.init(document.getElementById('voyager'), {
-        introspection: introspectionProvider
-      })
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
