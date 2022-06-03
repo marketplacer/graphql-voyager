@@ -1,7 +1,7 @@
 steps:
   - name: "Download Schema"
     key: download
-    # branches: "master"
+    branches: "master"
     command: sh /app/download
     timeout_in_minutes: 10
     artifact_paths:
@@ -13,7 +13,7 @@ steps:
 
   - name: ":rocket: Voyager Publish"
     depends_on: download
-    # branches: "master"
+    branches: "master"
     command: sh /app/voyager-publish
     timeout_in_minutes: 10
     plugins:
@@ -25,7 +25,7 @@ steps:
 
   - name: ":rocket: Docs Publish"
     depends_on: download
-    # branches: "master"
+    branches: "master"
     command: sh /app/docs-publish
     timeout_in_minutes: 10
     plugins:
