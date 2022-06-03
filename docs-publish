@@ -10,9 +10,10 @@ cd /app
 mkdir -p /root/.ssh
 ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
 
-npm ci
+ls -l marketplacer/app/graphql/schema.json
 
-npm run schema:download
+npm ci
+npm run docs:build
 npm run docs:publish
 
 echo -e "\033[1;32mDocumentation published!\033[0m"
