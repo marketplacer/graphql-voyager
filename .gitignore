@@ -1,2 +1,4 @@
 node_modules/
 src/schema.json
+/marketplacer/
+/build/

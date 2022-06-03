@@ -1,9 +1,36 @@
 steps:
-  - name: ":rocket: Publish"
-    branches: "master"
-    command: sh /app/build-and-publish
+  - name: "Download Schema"
+    key: download
+    # branches: "master"
+    command: sh /app/download
+    timeout_in_minutes: 10
+    artifact_paths:
+      - "marketplacer/app/graphql/schema.json"
+    plugins:
+      docker-compose#v3.5.0:
+        config: docker-compose.yml
+        run: app
+
+  - name: ":rocket: Voyager Publish"
+    depends_on: download
+    # branches: "master"
+    command: sh /app/voyager-publish
     timeout_in_minutes: 10
     plugins:
+      artifacts#v1.3.0:
+        download: "marketplacer/app/graphql/schema.json"
+      docker-compose#v3.5.0:
+        config: docker-compose.yml
+        run: app
+
+  - name: ":rocket: Docs Publish"
+    depends_on: download
+    # branches: "master"
+    command: sh /app/docs-publish
+    timeout_in_minutes: 10
+    plugins:
+      artifacts#v1.3.0:
+        download: "marketplacer/app/graphql/schema.json"
       docker-compose#v3.5.0:
         config: docker-compose.yml
         run: app

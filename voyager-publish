@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+NODE_ENV=production
+
+git config --global user.name "Buildkite"
+git config --global user.email productteam@marketplacer.com
+
+cd /app
+
+mkdir -p /root/.ssh
+ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
+
+ls -l marketplacer/app/graphql/schema.json
+cp marketplacer/app/graphql/schema.json src/
+
+npm ci
+npm run voyager:publish
+
+echo -e "\033[1;32mDocumentation published!\033[0m"

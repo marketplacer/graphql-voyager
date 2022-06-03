@@ -4,8 +4,9 @@
   "description": "Our GraphQL Schema rendered by GraphQL Voyager",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "schema:download": "get-graphql-schema 'https://www.bikeexchange.com.au/graphql' -j > src/schema.json",
-    "docs:publish": "gh-pages -a -d src -e graphql-voyager -r git@github.com:marketplacer/api.marketplacer.com.git"
+    "voyager:publish": "gh-pages -a -d src -e graphql-voyager -r git@github.com:marketplacer/api.marketplacer.com.git",
+    "docs:build": "graphdoc -s marketplacer/app/graphql/schema.json -o ./build",
+    "docs:publish": "gh-pages -a -d build -e graphql -r git@github.com:marketplacer/api.marketplacer.com.git"
   },
   "author": "Marketplacer <it@marketplacer.com>",
   "devDependencies": {
@@ -17,7 +18,7 @@
     "eslint-plugin-standard": "^4.0.1"
   },
   "dependencies": {
-    "get-graphql-schema": "^2.1.2",
+    "@2fd/graphdoc": "^2.4.0",
     "gh-pages": "^3.1.0"
   }
 }
